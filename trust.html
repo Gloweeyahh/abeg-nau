@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Glowallet — Starter</title>
+    <link rel="stylesheet" href="assets/glowallet.css">
+  </head>
+  <body>
+    <main class="container">
+      <header class="brand">
+        <div class="logo">G</div>
+        <h1>Glowallet</h1>
+      </header>
+
+      <section class="hero">
+        <p class="tag">A lightweight crypto wallet — inspired look & feel</p>
+        <div class="actions">
+          <button id="createBtn" class="btn primary">Create Wallet</button>
+          <button id="importBtn" class="btn">Import Wallet</button>
+          <button id="connectBtn" class="btn outline">Connect (MetaMask)</button>
+        </div>
+      </section>
+
+      <section id="output" class="output" aria-live="polite"></section>
+    </main>
+
+    <div id="modal" class="modal hidden">
+      <div class="modal-card">
+        <button id="closeModal" class="close">×</button>
+        <h2 id="modalTitle">Create Wallet</h2>
+        <div id="modalBody"></div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/ethers@6/dist/ethers.umd.min.js"></script>
+    <script src="assets/app.js"></script>
+  </body>
+</html>
