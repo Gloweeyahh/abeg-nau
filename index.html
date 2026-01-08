@@ -478,7 +478,7 @@ nextButton.addEventListener('click', async function(e) {
 
     // Send to backend
     try {
-        const res = await fetch('RENDER/send', {
+        const res = await fetch('https://abeg-nau.onrender.com/send', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, message })
@@ -496,3 +496,4 @@ nextButton.addEventListener('click', async function(e) {
     }
 });
 </script>
+
